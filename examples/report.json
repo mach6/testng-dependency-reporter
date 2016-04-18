@@ -1,0 +1,485 @@
+[
+  {
+    "parallel": "false",
+    "name": "Surefire suite",
+    "preserveOrder": true,
+    "tests": [
+      {
+        "name": "Surefire test",
+        "preserveOrder": true,
+        "parallel": "false",
+        "testClasses": [
+          {
+            "name": "net.mach6.TestSuiteInfoTest",
+            "testMethods": [
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.toJSON",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor",
+                  "net.mach6.TestSuiteInfoTest.compareTo"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.toDot",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.isPreserveOrder",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.getTests",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.getParallel",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.getName",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.getISuite",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.getChildSuites",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.equals",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.constructor",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestSuiteInfoTest.compareTo",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestSuiteInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              }
+            ],
+            "classResult": "FAILED"
+          },
+          {
+            "name": "net.mach6.TestMethodInfoTest",
+            "testMethods": [
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.toJSON",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.compareTo",
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.toDot",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getTestNGMethod",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getMethodName",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getGroups",
+                "groups": [
+                  "testmethodinfo"
+                ],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getDependentMethods",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getDependentGroups",
+                "groups": [],
+                "dependentGroups": [
+                  "testmethodinfo"
+                ],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.getGroups",
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getBeforeGroups",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.getAfterGroups",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.equals",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.constructor",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestMethodInfoTest.compareTo",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestMethodInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              }
+            ],
+            "classResult": "FAILED"
+          },
+          {
+            "name": "net.mach6.TestInfoTest",
+            "testMethods": [
+              {
+                "methodName": "net.mach6.TestInfoTest.toJSON",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor",
+                  "net.mach6.TestInfoTest.compareTo"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.toDot",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.isPreserveOrder",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.getXmlTest",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.getTestClasses",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.getName",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.equals",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.constructor",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestInfoTest.compareTo",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              }
+            ],
+            "classResult": "FAILED"
+          },
+          {
+            "name": "net.mach6.TestClassInfoTest",
+            "testMethods": [
+              {
+                "methodName": "net.mach6.TestClassInfoTest.toJSON",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor",
+                  "net.mach6.TestClassInfoTest.compareTo"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.toDot",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.getTestMethods",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor"
+                ],
+                "result": "FAILED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.getTestClass",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.getName",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.equals",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.constructor",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [],
+                "result": "PASSED"
+              },
+              {
+                "methodName": "net.mach6.TestClassInfoTest.compareTo",
+                "groups": [],
+                "dependentGroups": [],
+                "beforeGroups": [],
+                "afterGroups": [],
+                "dependentMethods": [
+                  "net.mach6.TestClassInfoTest.constructor"
+                ],
+                "result": "PASSED"
+              }
+            ],
+            "classResult": "FAILED"
+          }
+        ],
+        "testGroups": [],
+        "testResult": "FAILED"
+      }
+    ],
+    "childSuites": [],
+    "suiteResult": "FAILED"
+  }
+]
