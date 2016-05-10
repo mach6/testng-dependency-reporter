@@ -54,7 +54,7 @@ public class TestSuiteInfoTest {
     @Test(dependsOnMethods = "constructor")
     public void getTests(ITestContext ctx) {
         TestSuiteInfo suiteInfo = new TestSuiteInfo(ctx.getSuite(), null);
-        assertEquals(suiteInfo.getTests(), null);
+        assertTrue(suiteInfo.getTests().isEmpty());
     }
 
     @Test(dependsOnMethods = "constructor")

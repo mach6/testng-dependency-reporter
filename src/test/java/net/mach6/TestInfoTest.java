@@ -36,7 +36,7 @@ public class TestInfoTest {
     @Test(dependsOnMethods = "constructor")
     public void getTestClasses(ITestContext ctx) {
         TestInfo testInfo = new TestInfo(ctx, null);
-        assertNull(testInfo.getTestClasses());
+        assertNotNull(testInfo.getTestClasses());
     }
 
     @Test(dependsOnMethods = "constructor")
@@ -57,7 +57,7 @@ public class TestInfoTest {
         String subGraph = testInfo.toDot(true);
         String graph = testInfo.toDot(false);
 
-        assertTrue(subGraph.equals(""));
+        assertTrue(subGraph.contains("subgraph"));
         assertTrue(graph.contains("digraph g"));
     }
 

@@ -3,10 +3,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.mach6</groupId>
-    <artifactId>TestNGAnalyzer</artifactId>
+    <artifactId>testng-dependency-reporter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>TestNG Suite Analyzer</name>
+    <name>TestNG Test Dependency Reporter</name>
 
     <properties>
         <compileSource>1.7</compileSource>
@@ -123,7 +123,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
+                    <version>3.5.1</version>
                     <configuration>
                         <source>${compileSource}</source>
                         <target>${compileSource}</target>
@@ -174,7 +174,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.17</version>
+                    <version>2.19.1</version>
                     <configuration>
                         <includes>
                             <include>**/*Test*.java</include>
@@ -251,7 +251,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.1</version>
+                <version>2.10.3</version>
                 <configuration>
                     <minmemory>128m</minmemory>
                     <maxmemory>512</maxmemory>
@@ -266,7 +266,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changelog-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.3</version>
             </plugin>
 
             <plugin>
@@ -278,7 +278,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.17</version>
+                <version>2.19.1</version>
                 <reportSets>
                     <reportSet>
                         <reports>

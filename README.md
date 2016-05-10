@@ -16,7 +16,7 @@ Not yet published. Source code only.
 
 License
 -------
-[Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)¡
+[Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Compilation
 -----
@@ -33,7 +33,7 @@ With Maven, this looks like:
 ```xml
 <dependency>
   <groupId>net.mach6</groupId>
-  <artifactId>TestNGAnalyzer</artifactId>
+  <artifactId>testng-dependency-reporter</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <scope>test</scope>
 </dependency>

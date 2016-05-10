@@ -33,7 +33,7 @@ import com.google.gson.GsonBuilder;
 public class DependencyReportingListener implements IResultListener2, IReporter {
     private static final Logger LOGGER = Logger.getLogger(DependencyReportingListener.class.getName());
     private static final String OUTPUT_DIR = "/DependencyReporter";
-    private static final String DASH_OPTION = "dependencyReport";
+    private static final String DASH_OPTION = "dependencyReporter";
     private static final String REPORT_FILENAME_JSON = "/report.json";
     private static final String REPORT_FILENAME_DOT = "/report.dot";
     private static List<String> dotFiles = new ArrayList<>();
@@ -121,8 +121,8 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
             suiteInfoSet.add(suiteInfo);
         }
 
-        toStdOut(suiteInfoSet);
         generateOutput(suiteInfoSet, TOP_DIR);
+        logCompletion(suiteInfoSet);
     }
 
     private void generateOutput(Set<TestSuiteInfo> suiteInfoSet, String directory) {
@@ -150,6 +150,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
             return;
         }
 
+        LOGGER.fine("Creating " + filename);
         String json = "";
         if (jsonable instanceof JSONable) {
             json = ((JSONable) jsonable).toJSON();
@@ -184,7 +185,9 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         if (StringUtils.isEmpty(dot) || dot.equals("digraph g {\n}\n")) {
             return;
         }
+
         try {
+            LOGGER.fine("Creating " + fileName);
             FileUtils.writeStringToFile(new File(fileName), dot, "UTF-8");
             dotFiles.add(fileName);
         } catch (IOException e) {
@@ -195,6 +198,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
     private void generateOutputForTestSuiteInfo(Set<TestSuiteInfo> suites, String outputDirectory) {
         for (TestSuiteInfo suite : suites) {
             if (Option.MODE.isSet("all", "suites")) {
+                LOGGER.fine("Generating reports for " + suite.getName());
                 String fileName = suite.getName().replace(" ", "");
                 toDot(suite, outputDirectory + "/suites/" + fileName + ".dot");
                 toJson(suite, outputDirectory + "/suites/" + fileName + ".json");
@@ -207,6 +211,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
     private void doOutputForTestInfo(String outputDirectory, TestSuiteInfo suiteInfo) {
         for (TestInfo testInfo : suiteInfo.getTests()) {
             if (Option.MODE.isSet("all", "suites", "tests")) {
+                LOGGER.fine("Generating reports for " + testInfo.getName());
                 String fileName = testInfo.getName().replace(" ", "");
                 toDot(testInfo, outputDirectory + "/tests/" + fileName + ".dot");
                 toJson(testInfo, outputDirectory + "/tests/" + fileName + ".json");
@@ -219,6 +224,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
     private void doOutputForTestClassInfo(String outputDirectory, TestInfo testInfo) {
         for (TestClassInfo classInfo : testInfo.getTestClasses()) {
             if (Option.MODE.isSet("all", "suites", "tests", "classes")) {
+                LOGGER.fine("Generating reports for " + classInfo.getName());
                 String fileName = classInfo.getName();
                 toDot(classInfo, outputDirectory + "/classes/" + fileName + ".dot");
                 toJson(classInfo, outputDirectory + "/classes/" + fileName + ".json");
@@ -234,6 +240,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         }
 
         for (TestMethodInfo method : classInfo.getTestMethods()) {
+            LOGGER.fine("Generating reports for " + method.getMethodName());
             String fileName = classInfo.getName() + "." + method.getMethodName();
             toDot(method, outputDirectory + "/methods/" + fileName + ".dot");
             toJson(method, outputDirectory + "/methods/" + fileName + ".json");
@@ -261,25 +268,16 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
             } finally {
                 // Delete the dot file if it is not a requested output format
                 if (!Option.OUTPUT.isSet("dot", "all")) {
-                    LOGGER.info("deleting -> " + dotFile);
+                    LOGGER.fine("deleting -> " + dotFile);
                     FileUtils.deleteQuietly(new File(dotFile));
                 }
             }
         }
     }
 
-    private void toStdOut(Set<TestSuiteInfo> suites) {
-        // System.out.println("Method: " + method.getTestClass().getName() + "." + method.getMethodName());
-        // printAdditionalMethodInfo(method.getMethodsDependedUpon(), "dependent methods");
-        // printAdditionalMethodInfo(method.getGroups(), "groups");
-        // printAdditionalMethodInfo(method.getGroupsDependedUpon(), "dependent groups");
-        // printAdditionalMethodInfo(method.getBeforeGroups(), "before groups");
-        // printAdditionalMethodInfo(method.getAfterGroups(), "after groups");
-    }
-
-    private void printAdditionalMethodInfo(String[] info, String description) {
-        if (info.length > 0) {
-            System.out.println(String.format("    %s: %s", description, Arrays.asList(info)));
+    private void logCompletion(Set<TestSuiteInfo> suites) {
+        for (TestSuiteInfo suite : suites) {
+            LOGGER.info("Dependency report generation complete for " + suite.getName());
         }
     }
 

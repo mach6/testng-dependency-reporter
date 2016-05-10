@@ -45,7 +45,7 @@ public class TestClassInfoTest {
     @Test(dependsOnMethods = "constructor")
     public void getTestMethods(ITestContext ctx) {
         TestClassInfo classInfo = new TestClassInfo(Reporter.getCurrentTestResult().getMethod().getTestClass(), null);
-        assertNull(classInfo.getTestMethods());
+        assertTrue(classInfo.getTestMethods().isEmpty());
     }
 
     @Test(dependsOnMethods = "constructor")

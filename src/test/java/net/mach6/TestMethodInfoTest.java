@@ -32,13 +32,13 @@ public class TestMethodInfoTest {
     @Test(dependsOnMethods = "constructor")
     public void getAfterGroups(ITestContext ctx) {
         TestMethodInfo methodInfo = new TestMethodInfo(Reporter.getCurrentTestResult().getMethod(), ctx.getSuite());
-        fail("implement me");
+        assertTrue(methodInfo.getAfterGroups().isEmpty());
     }
 
     @Test(dependsOnMethods = "constructor")
     public void getBeforeGroups(ITestContext ctx) {
         TestMethodInfo methodInfo = new TestMethodInfo(Reporter.getCurrentTestResult().getMethod(), ctx.getSuite());
-        fail("implement me");
+        assertTrue(methodInfo.getBeforeGroups().isEmpty());
     }
 
     @Test(dependsOnMethods = "constructor", dependsOnGroups = { "testmethodinfo" })
@@ -81,7 +81,7 @@ public class TestMethodInfoTest {
         String subGraph = methodInfo.toDot(true);
         String graph = methodInfo.toDot(false);
 
-        assertTrue(subGraph.equals(""));
+        assertTrue(subGraph.contains("subgraph"));
         assertTrue(graph.contains("digraph g"));
     }
 
