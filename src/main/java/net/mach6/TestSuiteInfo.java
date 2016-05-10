@@ -17,12 +17,13 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.xml.XmlSuite;
+import org.yaml.snakeyaml.Yaml;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
-public class TestSuiteInfo implements Comparable<TestSuiteInfo>, Dottable, JSONable, Failable<TestInfo>,
+public class TestSuiteInfo implements Comparable<TestSuiteInfo>, Dottable, JSONable, YAMLable, Failable<TestInfo>,
         Skipable<TestInfo>, Passable<TestInfo> {
 
     @Expose
@@ -186,6 +187,12 @@ public class TestSuiteInfo implements Comparable<TestSuiteInfo>, Dottable, JSONa
     public String toJSON() {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
         return gson.toJson(this);
+    }
+
+    @Override
+    public String toYAML() {
+        Yaml yaml = new Yaml();
+        return yaml.dump(this);
     }
 
     @Override

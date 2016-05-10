@@ -14,12 +14,14 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import org.testng.ITestClass;
+import org.yaml.snakeyaml.Yaml;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
-public class TestClassInfo implements Comparable<TestClassInfo>, Dottable, JSONable, Failable<TestMethodInfo>,
+public class TestClassInfo implements Comparable<TestClassInfo>, Dottable, JSONable, YAMLable,
+        Failable<TestMethodInfo>,
         Passable<TestMethodInfo>, Skipable<TestMethodInfo> {
 
     @Expose
@@ -112,7 +114,7 @@ public class TestClassInfo implements Comparable<TestClassInfo>, Dottable, JSONa
         for (TestMethodInfo tmi : getTestMethods()) {
             String methodName = tmi.getMethodName();
             if (!visited.contains(methodName)) {
-                result.append("\"" + methodName + "\"["+ Result.getDotStyle(tmi.getResult()) + "];\n");
+                result.append("\"" + methodName + "\"[" + Result.getDotStyle(tmi.getResult()) + "];\n");
                 result.append("\"" + getName() + "\" -> \"" + methodName + "\";\n");
                 result.append(tmi.toDot(true));
                 visited.add(methodName);
@@ -128,6 +130,11 @@ public class TestClassInfo implements Comparable<TestClassInfo>, Dottable, JSONa
     public String toJSON() {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
         return gson.toJson(this);
+    }
+
+    @Override
+    public String toYAML() {
+        return new Yaml().dump(this);
     }
 
     @Override

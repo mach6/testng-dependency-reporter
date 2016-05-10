@@ -16,12 +16,13 @@ import java.util.List;
 import org.testng.ISuite;
 import org.testng.ITestNGMethod;
 import org.testng.internal.MethodHelper;
+import org.yaml.snakeyaml.Yaml;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
-public class TestMethodInfo implements Comparable<TestMethodInfo>, Dottable, JSONable {
+public class TestMethodInfo implements Comparable<TestMethodInfo>, Dottable, YAMLable, JSONable {
     @Expose
     private String methodName;
     @Expose
@@ -149,7 +150,10 @@ public class TestMethodInfo implements Comparable<TestMethodInfo>, Dottable, JSO
         return result.toString();
     }
 
-    @Override
+    public String toYAML() {
+        return new Yaml().dump(this);
+    }
+
     public String toJSON() {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
         return gson.toJson(this);

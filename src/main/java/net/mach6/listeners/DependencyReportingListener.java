@@ -24,6 +24,7 @@ import net.mach6.TestClassInfo;
 import net.mach6.TestSuiteInfo;
 import net.mach6.TestInfo;
 import net.mach6.TestMethodInfo;
+import net.mach6.YAMLable;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -35,6 +36,7 @@ import org.testng.ITestResult;
 import org.testng.SkipException;
 import org.testng.internal.IResultListener2;
 import org.testng.xml.XmlSuite;
+import org.yaml.snakeyaml.Yaml;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,6 +46,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
     private static final String OUTPUT_DIR = "/DependencyReporter";
     private static final String DASH_OPTION = "dependencyReporter";
     private static final String REPORT_FILENAME_JSON = "/report.json";
+    private static final String REPORT_FILENAME_YAML = "/report.yaml";
     private static final String REPORT_FILENAME_DOT = "/report.dot";
     private static List<String> dotFiles = new ArrayList<>();
 
@@ -62,7 +65,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         ENABLED(Arrays.asList("true", "false")),
         PRESCAN(Arrays.asList("false", "true")),
         MODE(Arrays.asList("all", "suites", "tests", "classes", "methods", "groups", "configuration")),
-        OUTPUT(Arrays.asList("all", "dot", "png", "json"));
+        OUTPUT(Arrays.asList("all", "dot", "png", "json","yaml"));
 
         private List<String> values;
 
@@ -133,6 +136,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
 
     private void generateOutput(Set<TestSuiteInfo> suiteInfoSet, String directory) {
         toJson(suiteInfoSet, directory + REPORT_FILENAME_JSON);
+        toYaml(suiteInfoSet, directory + REPORT_FILENAME_YAML);
         toDot(suiteInfoSet, directory + REPORT_FILENAME_DOT);
         generateOutputForTestSuiteInfo(suiteInfoSet, directory);
         generatePngFromDotFiles();
@@ -167,6 +171,26 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         }
         try {
             FileUtils.writeStringToFile(new File(filename), json, "UTF-8");
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to create " + filename + " output file.", e);
+        }
+    }
+
+    private void toYaml(Object yamlable, String filename) {
+        if (!Option.OUTPUT.isSet("yaml", "all")) {
+            return;
+        }
+
+        LOGGER.fine("Creating " + filename);
+        String yaml = "";
+        if (yamlable instanceof YAMLable) {
+            yaml = ((YAMLable) yamlable).toYAML();
+        }
+        else {
+            yaml = new Yaml().dump(yamlable);
+        }
+        try {
+            FileUtils.writeStringToFile(new File(filename), yaml, "UTF-8");
         } catch (IOException e) {
             throw new RuntimeException("Unable to create " + filename + " output file.", e);
         }
@@ -208,6 +232,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
                 String fileName = suite.getName().replace(" ", "");
                 toDot(suite, outputDirectory + "/suites/" + fileName + ".dot");
                 toJson(suite, outputDirectory + "/suites/" + fileName + ".json");
+                toYaml(suite, outputDirectory + "/suites/" + fileName + ".yaml");
             }
 
             doOutputForTestInfo(outputDirectory, suite);
@@ -221,6 +246,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
                 String fileName = testInfo.getName().replace(" ", "");
                 toDot(testInfo, outputDirectory + "/tests/" + fileName + ".dot");
                 toJson(testInfo, outputDirectory + "/tests/" + fileName + ".json");
+                toYaml(testInfo, outputDirectory + "/tests/" + fileName + ".yaml");
             }
 
             doOutputForTestClassInfo(outputDirectory, testInfo);
@@ -234,6 +260,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
                 String fileName = classInfo.getName();
                 toDot(classInfo, outputDirectory + "/classes/" + fileName + ".dot");
                 toJson(classInfo, outputDirectory + "/classes/" + fileName + ".json");
+                toYaml(classInfo, outputDirectory + "/classes/" + fileName + ".yaml");
             }
 
             doOutputForMethodInfo(outputDirectory, classInfo);
@@ -250,6 +277,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
             String fileName = classInfo.getName() + "." + method.getMethodName();
             toDot(method, outputDirectory + "/methods/" + fileName + ".dot");
             toJson(method, outputDirectory + "/methods/" + fileName + ".json");
+            toYaml(method, outputDirectory + "/methods/" + fileName + ".yaml");
         }
     }
 
