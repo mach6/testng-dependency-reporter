@@ -26,10 +26,14 @@ $ mvn clean install
 
 Installation
 -----
-Use the `TestNGAnalyzer-{version}.jar` as a test dependency for your project by
-adding it to the _CLASSPATH_.
+1. Install graphviz for the executable `dot` to `/usr/local/bin/dot`.
+On a Mac you can do this with homebrew from a terminal with:
+```shell
+brew install graphviz
+```
 
-With Maven, this looks like:
+2. Use the `testng-dependency-reporter-{version}.jar` as a test dependency for your project by
+adding it to the _CLASSPATH_. With Maven, this looks like:
 ```xml
 <dependency>
   <groupId>net.mach6</groupId>
@@ -43,17 +47,17 @@ Usage
 -----
 With Maven Surefire
 ```shell
-$ mvn test [-DdependecyReport=[report options]] [surefire options]
+$ mvn test [-DdependecyReporter=[report options]] [surefire options]
 ```
 With vanilla `java`, assuming all jars are in your CLASSPATH
 ```shell
-$ java [-DdependencyReport=[report options]] org.testng.TestNG [testng options]
+$ java [-DdependencyReporter=[report options]] org.testng.TestNG [testng options]
 ```
 
 __Report Options__
 
 All "command line" options for this reporter are passed via the JVM system
-property `dependencyReport`. The format is `option:value[,option:value...]`
+property `dependencyReporter`. The format is `option:value[,option:value...]`
 
 | Option | Values (bold is the default) |
 | :----: | :--------------------------- |
@@ -64,7 +68,7 @@ property `dependencyReport`. The format is `option:value[,option:value...]`
 
 For example:
 ```shell
-$ mvn test -DdependencyReport=prescan:true,output:png
+$ mvn test -DdependencyReporter=prescan:true,output:png
 ```
 
 Credits
