@@ -71,6 +71,13 @@ For example:
 $ mvn test -DdependencyReporter=prescan:true,output:png
 ```
 
+Output
+-----
+All output will be in a sub-folder named `DependencyReporter` whose parent folder
+is the folder that contains other TestNG output.
+- In a maven-surefire project this will typically be `target/surefire-reports/`.
+- In a non-maven project, this will typically be `test-output/`.
+
 Credits
 -------
 Inspired by [this work](https://github.com/tomekkaczanowski/testng-test-dependencies-reporter) of Tomek Kaczanowski
