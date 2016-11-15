@@ -9,6 +9,8 @@
 
 package net.mach6.listeners;
 
+import guru.nidi.graphviz.engine.Graphviz;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,7 +64,8 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         ENABLED(Arrays.asList("true", "false")),
         PRESCAN(Arrays.asList("false", "true")),
         MODE(Arrays.asList("all", "suites", "tests", "classes", "methods", "groups", "configuration")),
-        OUTPUT(Arrays.asList("all", "dot", "png", "json"));
+        OUTPUT(Arrays.asList("all", "dot", "png", "json")),
+        USEDOTCMD(Arrays.asList("false", "true"));
 
         private List<String> values;
 
@@ -144,6 +147,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         }
 
         StringBuilder builder = new StringBuilder("digraph g {\n");
+        builder.append("rankdir=LR;\n");
         for (Dottable dottable : suiteInfoSet) {
             builder.append(dottable.toDot(true));
         }
@@ -260,14 +264,26 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
 
         for (String dotFile : dotFiles) {
             dotFile = FilenameUtils.getFullPath(dotFile) + FilenameUtils.getName(dotFile);
-            try {
-                final String cmd = "/usr/local/bin/dot "
-                        + dotFile
-                        + " -Grankdir=LR -Tpng -o "
-                        + StringUtils.removeEnd(dotFile, ".dot").concat(".png");
 
-                Process p = Runtime.getRuntime().exec(cmd, null);
-                p.waitFor();
+            LOGGER.info("rendering -> " + dotFile);
+            try {
+                if (Option.USEDOTCMD.isSet("false")) {
+                    // using graphviz-java
+                    Graphviz graphViz = Graphviz.fromString(FileUtils.readFileToString(new File(dotFile)));
+                    graphViz.targetSize(10000, 10000);
+                    graphViz.format("png");
+                    graphViz.renderToFile(new File(StringUtils.removeEnd(dotFile, ".dot").concat(".png")));
+                } else {
+                    // using the dot executable
+                    final String cmd = System.getProperty("DOT_BINARY_PATH", "/usr/local/bin/dot")
+                            + " "
+                            + dotFile
+                            + " -Grankdir=LR -Tpng -o "
+                            + StringUtils.removeEnd(dotFile, ".dot").concat(".png");
+
+                    Process p = Runtime.getRuntime().exec(cmd, null);
+                    p.waitFor();
+                }
             } catch (IOException | InterruptedException e) {
                 LOGGER.severe("Error generating png file due to " + e.getMessage());
                 throw new RuntimeException("Error generating png file", e);

@@ -9,13 +9,14 @@
     <name>TestNG Test Dependency Reporter</name>
 
     <properties>
-        <compileSource>1.7</compileSource>
+        <compileSource>1.8</compileSource>
         <skipTests>false</skipTests>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.version>6.9.10</testng.version>
         <gson.version>2.3.1</gson.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.lang3.version>3.4</commons.lang3.version>
+        <graphviz.java.version>0.0.2</graphviz.java.version>
     </properties>
 
     <licenses>
@@ -179,7 +180,6 @@
                         <includes>
                             <include>**/*Test*.java</include>
                         </includes>
-                        <argLine>-XX:MaxPermSize=128m -XX:-UseSplitVerifier</argLine>
                     </configuration>
                 </plugin>
 
@@ -199,7 +199,7 @@
                                         <version>[3.0,)</version>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
-                                        <version>1.7</version>
+                                        <version>1.8</version>
                                     </requireJavaVersion>
                                     <requireReleaseDeps>
                                         <onlyWhenRelease>true</onlyWhenRelease>
@@ -301,6 +301,11 @@
     </reporting>
 
     <dependencies>
+        <dependency>
+            <groupId>guru.nidi</groupId>
+            <artifactId>graphviz-java</artifactId>
+            <version>${graphviz.java.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
