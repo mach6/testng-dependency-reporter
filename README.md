@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mach6/testng-dependency-reporter.svg?branch=master)](https://travis-ci.org/mach6/testng-dependency-reporter)
+
 Dependency Reporter for TestNG
 ==============================
 An `IReporter` and `IResultLisener` for TestNG that can analyze the test `ISuite`,

@@ -1,3 +1,12 @@
+/*
+ * Copyright (C) 2016 Doug Simmons
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance 
+ * with the License.
+ * 
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0  
+ */
+
 package net.mach6;
 
 import java.util.HashSet;
@@ -160,7 +169,7 @@ public class TestSuiteInfo implements Comparable<TestSuiteInfo>, Dottable, JSONa
         StringBuilder result = new StringBuilder((asSubgraph) ? "subgraph suite" + formattedName : "digraph g");
         result.append(" {\n");
         result.append("\"" + getName() + "\"[" + Result.getDotStyle(getResult()) +
-                    ",shape=box,peripheries=2,label=\"Suite: " + getName() + "\"];\n");
+                ",shape=box,peripheries=2,label=\"Suite: " + getName() + "\"];\n");
         result.append(dotWalkSuiteInfo(this));
         for (TestInfo ti : getTests()) {
             result.append("\"" + ti.getName() + "\"[" + Result.getDotStyle(ti.getResult()) +

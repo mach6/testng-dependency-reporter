@@ -1,3 +1,12 @@
+/*
+ * Copyright (C) 2016 Doug Simmons
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance 
+ * with the License.
+ * 
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0  
+ */
+
 package net.mach6.listeners;
 
 import java.io.File;
@@ -68,10 +77,7 @@ public class DependencyReportingListener implements IResultListener2, IReporter 
         public boolean isSet(String value) {
             String options = System.getProperty(DASH_OPTION, "");
             String parsed = parseOptions(options);
-            if (parsed.equalsIgnoreCase(value)) {
-                return true;
-            }
-            return false;
+            return parsed.equalsIgnoreCase(value);
         }
 
         public boolean isSet(String... orValues) {
